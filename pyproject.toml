@@ -11,7 +11,7 @@ readme = "README.md"
 packages = [
 	{ include = "gendiff" },
 ]
-repository = "https://github.com/Pryanik0071/python-project-49"
+repository = "https://github.com/Pryanik0071/python-project-50"
 
 [tool.poetry.dependencies]
 python = "^3.10"
