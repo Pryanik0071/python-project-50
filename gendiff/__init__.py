@@ -1,9 +1,12 @@
 import json
 
-
 __all__ = (
     'generate_diff',
 )
+
+
+def get_diff(key, value, symbol: str = ' ') -> dict:
+    return {f'{symbol} {key}': value}
 
 
 def generate_diff(file_path1, file_path2):
@@ -19,17 +22,11 @@ def generate_diff(file_path1, file_path2):
 def check_values(key, value1, value2):
     if value1 and value2:
         if value1 != value2:
-            return {
-                f'- {key}': value1,
-                f'+ {key}': value2
-            }
-        return {
-            key: value1,
-        }
+            dict_ = {}
+            dict_.update(get_diff(key, value1, '-'))
+            dict_.update(get_diff(key, value2, '+'))
+            return dict_
+        return get_diff(key, value1)
     if value1 is not None:
-        return {
-            f'- {key}': value1,
-        }
-    return {
-            f'+ {key}': value2
-        }
+        return get_diff(key, value1, '-')
+    return get_diff(key, value2, '+')
