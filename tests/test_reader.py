@@ -11,7 +11,6 @@ PATH = 'tests/fixtures/'
     (PATH + 'file1.yaml', True),
     (PATH + 'file1.yml', True),
     (PATH + 'file1.txt', False)
-
 ])
 def test_reader(file_path, expected):
     assert bool(read_file(file_path)) == expected
