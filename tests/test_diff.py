@@ -19,6 +19,14 @@ def test_keys(obj1, obj2, expected):
     assert get_first_keys(obj1, obj2) == expected
 
 
+@pytest.mark.parametrize("obj1, obj2, expected", [
+    (obj.file1, obj.file2, obj.diff12)
+])
+def test_diff(obj1, obj2, expected):
+    keys = sorted(set(list(obj1.keys()) + list(obj2.keys())))
+    assert build_diff_tree(keys, obj1, obj2) == expected
+
+
 @pytest.mark.parametrize("file_path1, file_path2, expected", [
     (PATH + 'file1.json', PATH + 'file2.json', PATH + 'out_1_2.txt'),
     (PATH + 'file3.json', PATH + 'file4.json', PATH + 'out_3_4.txt'),
