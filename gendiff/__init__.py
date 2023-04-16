@@ -1,32 +1,17 @@
-import json
+from .diff import build_diff_tree, get_first_keys
+from .reader import read_file
+from gendiff.formatters.formatter import call_formatter
+
 
 __all__ = (
     'generate_diff',
 )
 
 
-def get_diff(key, value, symbol: str = ' ') -> dict:
-    return {f'{symbol} {key}': value}
-
-
-def generate_diff(file_path1, file_path2):
-    json1 = json.load(open(file_path1))
-    json2 = json.load(open(file_path2))
-    keys = sorted(set(list(json1.keys()) + list(json2.keys())))
-    dict_ = {}
-    for key in keys:
-        dict_.update(check_values(key, json1.get(key), json2.get(key)))
-    return json.dumps(dict_, indent=4).replace('\"', '')
-
-
-def check_values(key, value1, value2):
-    if value1 and value2:
-        if value1 != value2:
-            dict_ = {}
-            dict_.update(get_diff(key, value1, '-'))
-            dict_.update(get_diff(key, value2, '+'))
-            return dict_
-        return get_diff(key, value1)
-    if value1 is not None:
-        return get_diff(key, value1, '-')
-    return get_diff(key, value2, '+')
+def generate_diff(file_path1, file_path2, formatter):
+    file1 = read_file(file_path1)
+    file2 = read_file(file_path2)
+    if file1 is None or file2 is None:
+        return None
+    keys = get_first_keys(file1, file2)
+    return call_formatter(formatter)(build_diff_tree(keys, file1, file2))
