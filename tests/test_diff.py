@@ -4,7 +4,7 @@ import pytest
 import yaml
 
 from .fixtures import objects as obj
-from gendiff.diff import build_diff_tree, get_first_keys
+from gendiff.diff import get_diff_tree, get_first_keys
 
 
 PATH = 'tests/fixtures/'
@@ -24,7 +24,7 @@ def test_keys(obj1, obj2, expected):
 ])
 def test_diff(obj1, obj2, expected):
     keys = sorted(set(list(obj1.keys()) + list(obj2.keys())))
-    assert build_diff_tree(keys, obj1, obj2) == expected
+    assert get_diff_tree(keys, obj1, obj2) == expected
 
 
 @pytest.mark.parametrize("file_path1, file_path2, expected", [
@@ -36,7 +36,7 @@ def test_diff_json(file_path1, file_path2, expected):
     file1 = json.load(open(file_path1))
     file2 = json.load(open(file_path2))
     keys = sorted(set(list(file1.keys()) + list(file2.keys())))
-    assert f'{build_diff_tree(keys, file1, file2)}' == \
+    assert f'{get_diff_tree(keys, file1, file2)}' == \
            open(expected).read().rstrip()
 
 
@@ -50,7 +50,7 @@ def test_diff_yaml(file_path1, file_path2, expected):
     with open(file_path2) as file2:
         file2 = yaml.load(file2, Loader=yaml.loader.SafeLoader)
     keys = sorted(set(list(file1.keys()) + list(file2.keys())))
-    assert f'{build_diff_tree(keys, file1, file2)}' == \
+    assert f'{get_diff_tree(keys, file1, file2)}' == \
            open(expected).read().rstrip()
 
 
@@ -63,7 +63,7 @@ def test_diff_json_yaml(file_path1, file_path2, expected):
     with open(file_path2) as file2:
         file2 = yaml.load(file2, Loader=yaml.loader.SafeLoader)
     keys = sorted(set(list(file1.keys()) + list(file2.keys())))
-    assert f'{build_diff_tree(keys, file1, file2)}' == \
+    assert f'{get_diff_tree(keys, file1, file2)}' == \
            open(expected).read().rstrip()
 
 
@@ -76,5 +76,5 @@ def test_diff_yaml_json(file_path1, file_path2, expected):
         file1 = yaml.load(file1, Loader=yaml.loader.SafeLoader)
     file2 = json.load(open(file_path2))
     keys = sorted(set(list(file1.keys()) + list(file2.keys())))
-    assert f'{build_diff_tree(keys, file1, file2)}' == \
+    assert f'{get_diff_tree(keys, file1, file2)}' == \
            open(expected).read().rstrip()

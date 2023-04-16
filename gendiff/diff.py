@@ -1,4 +1,4 @@
-def build_diff_tree(keys, obj1, obj2):
+def get_diff_tree(keys, obj1, obj2):
     list_ = []
     for key in keys:
         if key in obj1 and key in obj2:
@@ -7,7 +7,7 @@ def build_diff_tree(keys, obj1, obj2):
                 new_keys = sorted(
                     set(list(obj1[key].keys()) + list(obj2[key].keys()))
                 )
-                result = build_diff_tree(new_keys, obj1[key], obj2[key])
+                result = get_diff_tree(new_keys, obj1[key], obj2[key])
                 list_.append({
                     "key": key,
                     "status": 'STAY',
