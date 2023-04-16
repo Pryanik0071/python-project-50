@@ -1,54 +1,59 @@
-def status(status):
-    if status == 'STAY':
+def get_status(status_):
+    if status_ == 'STAY':
         return '    '
-    if status == 'ADD':
+    if status_ == 'ADD':
         return '  + '
     return '  - '
 
 
-def space(deep):
-    return f'{" " * (4 * deep)}'
+def get_space(deep):
+    return " " * 4 * deep
 
 
-def check(st):
-    if st == '':
+def transform_value(value_):
+    if value_ == '':
         return ''
-    if st is False:
+    if value_ is False:
         return ' false'
-    if st is True:
+    if value_ is True:
         return ' true'
-    return f' {st}'
+    if value_ is None:
+        return ' null'
+    return f' {value_}'
 
 
-def value(val, deep):
-    list_ = []
+def get_head(deep, status, dict_):
+    return f'{get_space(deep)}{get_status(status)}{dict_["key"]}:'
+
+
+def get_value(val, deep):
     if isinstance(val, dict):
         if len(val) == 1:
-            key, value_ = list(val.items())[0]
-            return ' {\n' + f'{space(deep + 1)}{key}:{value(value_, deep + 1)}' + f'\n{space(deep)}' + '}'
-        else:
-            for key, values in val.items():
-                list_.append(f'\n{space(deep + 1)}{key}:{value(values, deep + 1)}')
-            return ' {' + ''.join(list_) + f'\n{space(deep)}' + '}'
-    return check(val)
+            key, value = list(val.items())[0]
+            return ' {\n' + f'{get_space(deep + 1)}{key}:{get_value(value, deep + 1)}' + f'\n{get_space(deep)}' + '}'
+        list_ = []
+        for key, values in val.items():
+            list_.append(f'\n{get_space(deep + 1)}{key}:{get_value(values, deep + 1)}')
+        return ' {' + ''.join(list_) + f'\n{get_space(deep)}' + '}'
+    return transform_value(val)
 
 
-def t(dict_, deep):
-    if dict_.get('status') in ('STAY', 'ADD', 'DEL'):
+def build_stylish_tree(dict_, deep):
+    if dict_.get('status') != 'CHANGE':
         if isinstance(dict_['value'], list):
-            result = '\n'.join(list(map(lambda x: t(x, deep + 1), dict_['value'])))
-            return f'{space(deep)}{status(dict_["status"])}{dict_["key"]}:' + ' {\n' + f'{result}' + f'\n{space(deep + 1)}' + '}'
-        return f'{space(deep)}{status(dict_["status"])}{dict_["key"]}:' + f'{value(dict_["value"], deep + 1)}'
-    result1 = dict_['value1_old']
-    result2 = dict_['value2_new']
-    r1_ = f'{value(result1, deep + 1)}'
-    r2_ = f'{value(result2, deep + 1)}'
-    return f'{space(deep)}{status("")}{dict_["key"]}:{r1_}' \
-           f'\n{space(deep)}{status("ADD")}{dict_["key"]}:{r2_}'
+            result = '\n'.join(list(map(lambda x: build_stylish_tree(x, deep + 1), dict_['value'])))
+            return get_head(deep, dict_["status"], dict_) + \
+                ' {' + f'\n{result}' + f'\n{get_space(deep + 1)}' + '}'
+        return get_head(deep, dict_["status"], dict_) + \
+            f'{get_value(dict_["value"], deep + 1)}'
+    return get_head(deep, "", dict_) + \
+        get_value(dict_["value1_old"], deep + 1) + \
+        '\n' + get_head(deep, "ADD", dict_) \
+        + f'{get_value(dict_["value2_new"], deep + 1)}'
 
 
 def get_stylish_diff(node):
-    l_ = []
-    for i in node:
-        l_.append(t(i, 0))
-    return '{\n' + '\n'.join(l_) + '\n}'
+    list_ = []
+    for _ in node:
+        list_.append(build_stylish_tree(_, 0))
+    return '{\n' + '\n'.join(list_) + '\n}'

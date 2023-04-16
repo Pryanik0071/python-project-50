@@ -28,8 +28,8 @@ def test_diff(obj1, obj2, expected):
 
 
 @pytest.mark.parametrize("file_path1, file_path2, expected", [
-    (PATH + 'file1.json', PATH + 'file2.json', PATH + 'out_1_2.txt'),
-    (PATH + 'file3.json', PATH + 'file4.json', PATH + 'out_3_4.txt'),
+    (PATH + 'file1.json', PATH + 'file2.json', PATH + 'diff_1_2.txt'),
+    (PATH + 'file3.json', PATH + 'file4.json', PATH + 'diff_3_4.txt'),
 
 ])
 def test_diff_json(file_path1, file_path2, expected):
@@ -41,8 +41,8 @@ def test_diff_json(file_path1, file_path2, expected):
 
 
 @pytest.mark.parametrize("file_path1, file_path2, expected", [
-    (PATH + 'file1.yaml', PATH + 'file2.yml', PATH + 'out_1_2.txt'),
-    (PATH + 'file1.yml', PATH + 'file2.yaml', PATH + 'out_1_2.txt'),
+    (PATH + 'file1.yaml', PATH + 'file2.yml', PATH + 'diff_1_2.txt'),
+    (PATH + 'file1.yml', PATH + 'file2.yaml', PATH + 'diff_1_2.txt'),
 ])
 def test_diff_yaml(file_path1, file_path2, expected):
     with open(file_path1) as file1:
@@ -55,8 +55,8 @@ def test_diff_yaml(file_path1, file_path2, expected):
 
 
 @pytest.mark.parametrize("file_path1, file_path2, expected", [
-    (PATH + 'file1.json', PATH + 'file2.yml', PATH + 'out_1_2.txt'),
-    (PATH + 'file1.json', PATH + 'file2.yaml', PATH + 'out_1_2.txt'),
+    (PATH + 'file1.json', PATH + 'file2.yml', PATH + 'diff_1_2.txt'),
+    (PATH + 'file1.json', PATH + 'file2.yaml', PATH + 'diff_1_2.txt'),
 ])
 def test_diff_json_yaml(file_path1, file_path2, expected):
     file1 = json.load(open(file_path1))
@@ -68,8 +68,8 @@ def test_diff_json_yaml(file_path1, file_path2, expected):
 
 
 @pytest.mark.parametrize("file_path1, file_path2, expected", [
-    (PATH + 'file1.yaml', PATH + 'file2.json', PATH + 'out_1_2.txt'),
-    (PATH + 'file1.yml', PATH + 'file2.json', PATH + 'out_1_2.txt'),
+    (PATH + 'file1.yaml', PATH + 'file2.json', PATH + 'diff_1_2.txt'),
+    (PATH + 'file1.yml', PATH + 'file2.json', PATH + 'diff_1_2.txt'),
 ])
 def test_diff_yaml_json(file_path1, file_path2, expected):
     with open(file_path1) as file1:
