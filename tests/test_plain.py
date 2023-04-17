@@ -23,8 +23,7 @@ def test_transform_value(value, expected):
 
 
 @pytest.mark.parametrize("value, expected", [
-    (obj.diff34, PATH + 'plain34.txt'),
-    # (obj.diff12, PATH + 'stylish12.txt'),
+    (obj.diff34, PATH + 'plain34.txt')
 ])
 def test_get_stylish_diff(value, expected):
     assert get_plain_diff(value) == open(expected).read()
