@@ -43,17 +43,19 @@ def calculate_value(val, deep):
 
 def build_stylish_tree(dict_, deep):
     if dict_.get('status') != 'CHANGE':
+        key = get_head(deep, dict_["status"], dict_)
         if isinstance(dict_['value'], list):
             result = '\n'.join(list(map(
                 lambda x: build_stylish_tree(x, deep + 1), dict_['value'])))
-            return get_head(deep, dict_["status"], dict_) + \
-                ' {' + f'\n{result}' + f'\n{get_space(deep + 1)}' + '}'
-        return get_head(deep, dict_["status"], dict_) + \
-            calculate_value(dict_["value"], deep + 1)
-    return get_head(deep, "", dict_) + \
-        calculate_value(dict_["value1_old"], deep + 1) + \
-        '\n' + get_head(deep, "ADD", dict_) + \
-        f'{calculate_value(dict_["value2_new"], deep + 1)}'
+            value = ' {' + f'\n{result}' + f'\n{get_space(deep + 1)}' + '}'
+            return key + value
+        value = calculate_value(dict_["value"], deep + 1)
+        return key + value
+    k_old = get_head(deep, "", dict_)
+    val_old = calculate_value(dict_["value1_old"], deep + 1)
+    k_new = '\n' + get_head(deep, "ADD", dict_)
+    val_new = calculate_value(dict_["value2_new"], deep + 1)
+    return k_old + val_old + k_new + val_new
 
 
 def get_stylish_diff(node):

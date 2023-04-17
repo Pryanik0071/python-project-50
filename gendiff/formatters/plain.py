@@ -23,7 +23,7 @@ def build_plain_tree(dict_, keys):
         if dict_.get('status') == 'ADD':
             value = get_value(dict_["value"])
             return get_head(key) + f'added with value: {value}'
-        elif dict_.get('status') == 'DEL':
+        if dict_.get('status') == 'DEL':
             return get_head(key) + 'removed'
         return ''
     value_old = get_value(dict_["value1_old"])
