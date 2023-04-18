@@ -8,11 +8,10 @@
 ## Tools:
 + **poetry**
 + **python = "^3.10"**
-+ **flake8**
-+ **pytest**
-+ **pytest-cov**
 
 ## Installation:
 ### Clone repository and use poetry:
     git clone hhttps://github.com/Pryanik0071/python-project-50
     make install
+
+## Examples:
