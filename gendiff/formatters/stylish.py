@@ -17,8 +17,8 @@ def transform_value(value_):
             True: ' true',
             None: ' null',
         }.get(value_)
-    if value_ == '':
-        return ''
+    # if value_ == '':
+    #     return ''
     return f' {value_}'
 
 
