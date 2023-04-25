@@ -5,33 +5,33 @@
         "value": [
             {
                 "key": "follow",
-                "status": "ADD",
+                "status": "ADDED",
                 "value": false
             },
             {
                 "key": "setting1",
-                "status": "STAY",
+                "status": "UNCHANGED",
                 "value": "Value 1"
             },
             {
                 "key": "setting2",
-                "status": "DEL",
+                "status": "DELETED",
                 "value": 200
             },
             {
                 "key": "setting3",
-                "status": "CHANGE",
+                "status": "CHANGED",
                 "value1_old": true,
                 "value2_new": null
             },
             {
                 "key": "setting4",
-                "status": "ADD",
+                "status": "ADDED",
                 "value": "blah blah"
             },
             {
                 "key": "setting5",
-                "status": "ADD",
+                "status": "ADDED",
                 "value": {
                     "key5": "value5"
                 }
@@ -46,7 +46,7 @@
                         "value": [
                             {
                                 "key": "wow",
-                                "status": "CHANGE",
+                                "status": "CHANGED",
                                 "value1_old": "",
                                 "value2_new": "so much"
                             }
@@ -54,12 +54,12 @@
                     },
                     {
                         "key": "key",
-                        "status": "STAY",
+                        "status": "UNCHANGED",
                         "value": "value"
                     },
                     {
                         "key": "ops",
-                        "status": "ADD",
+                        "status": "ADDED",
                         "value": "vops"
                     }
                 ]
@@ -72,18 +72,18 @@
         "value": [
             {
                 "key": "baz",
-                "status": "CHANGE",
+                "status": "CHANGED",
                 "value1_old": "bas",
                 "value2_new": "bars"
             },
             {
                 "key": "foo",
-                "status": "STAY",
+                "status": "UNCHANGED",
                 "value": "bar"
             },
             {
                 "key": "nest",
-                "status": "CHANGE",
+                "status": "CHANGED",
                 "value1_old": {
                     "key": "value"
                 },
@@ -93,7 +93,7 @@
     },
     {
         "key": "group2",
-        "status": "DEL",
+        "status": "DELETED",
         "value": {
             "abc": 12345,
             "deep": {
@@ -103,7 +103,7 @@
     },
     {
         "key": "group3",
-        "status": "ADD",
+        "status": "ADDED",
         "value": {
             "deep": {
                 "id": {

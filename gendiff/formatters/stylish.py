@@ -1,7 +1,7 @@
 def get_status(status_):
-    if status_ in {'STAY', 'NESTED'}:
+    if status_ in {'UNCHANGED', 'NESTED'}:
         return '    '
-    if status_ == 'ADD':
+    if status_ == 'ADDED':
         return '  + '
     return '  - '
 
@@ -17,8 +17,6 @@ def transform_value(value_):
             True: ' true',
             None: ' null',
         }.get(value_)
-    # if value_ == '':
-    #     return ''
     return f' {value_}'
 
 
@@ -43,7 +41,7 @@ def calculate_value(val, deep):
 
 def build_stylish_tree(dict_, deep):
     status = dict_.get('status')
-    if status != 'CHANGE':
+    if status != 'CHANGED':
         key = get_head(deep, status, dict_)
         if status == 'NESTED':
             result = '\n'.join(list(map(
@@ -54,7 +52,7 @@ def build_stylish_tree(dict_, deep):
         return key + value
     k_old = get_head(deep, '', dict_)
     val_old = calculate_value(dict_['value1_old'], deep + 1)
-    k_new = '\n' + get_head(deep, 'ADD', dict_)
+    k_new = '\n' + get_head(deep, 'ADDED', dict_)
     val_new = calculate_value(dict_['value2_new'], deep + 1)
     return k_old + val_old + k_new + val_new
 

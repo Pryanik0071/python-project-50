@@ -13,9 +13,9 @@ PATH = 'tests/fixtures/'
 
 
 @pytest.mark.parametrize('status, expected', [
-    ('STAY', '    '),
-    ('ADD', '  + '),
-    ('DEL', '  - ')
+    ('UNCHANGED', '    '),
+    ('ADDED', '  + '),
+    ('DELETED', '  - ')
 ])
 def test_get_status(status, expected):
     assert get_status(status) == expected
