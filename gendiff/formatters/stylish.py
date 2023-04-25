@@ -59,6 +59,6 @@ def build_stylish_tree(dict_, deep):
 
 def get_stylish_diff(node):
     list_ = []
-    for _ in node:
-        list_.append(build_stylish_tree(_, 0))
+    for children in node:
+        list_.append(build_stylish_tree(children, 0))
     return '{\n' + '\n'.join(list_) + '\n}'
