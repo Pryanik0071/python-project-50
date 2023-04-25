@@ -5,6 +5,8 @@ def get_head(key):
 def get_value(value):
     if isinstance(value, dict):
         return '[complex value]'
+    if isinstance(value, int):
+        return value
     if isinstance(value, bool) or value is None:
         return {
             False: 'false',
