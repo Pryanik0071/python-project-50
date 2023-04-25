@@ -1,6 +1,6 @@
 import pytest
 
-from gendiff.formatters.formatter import call_formatter
+from gendiff.formatters.formatter import get_formatter
 
 
 @pytest.mark.parametrize("formatter, expected", [
@@ -10,4 +10,4 @@ from gendiff.formatters.formatter import call_formatter
     ('another', False)
 ])
 def test_formatter(formatter, expected):
-    assert bool(call_formatter(formatter)) == expected
+    assert bool(get_formatter(formatter)) == expected
