@@ -7,9 +7,10 @@ import yaml
 def read_json(file_path):
     file_data = dict()
     try:
-        file_data = json.load(open(file_path))
+        with open(file_path) as f:
+            file_data = json.load(f)
     except json.decoder.JSONDecodeError:
-        print(f'File {file_path} is empty!')
+        print(f'File {file_path} does not contain valid JSON')
     return file_data
 
 
