@@ -3,7 +3,7 @@ import pytest
 from gendiff.formatters.formatter import get_formatter
 
 
-@pytest.mark.parametrize("formatter, expected", [
+@pytest.mark.parametrize('formatter, expected', [
     ('stylish', True),
     ('plain', True),
     ('json', True),

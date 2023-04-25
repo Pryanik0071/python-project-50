@@ -9,35 +9,35 @@ def get_diff_tree(keys, obj1, obj2):
                 )
                 result = get_diff_tree(new_keys, obj1[key], obj2[key])
                 list_.append({
-                    "key": key,
-                    "status": 'NESTED',
-                    "value": result
+                    'key': key,
+                    'status': 'NESTED',
+                    'value': result
                 })
             else:
                 if obj1.get(key) == obj2.get(key):
                     list_.append({
-                        "key": key,
-                        "status": 'STAY',
-                        "value": obj1[key]
+                        'key': key,
+                        'status': 'STAY',
+                        'value': obj1[key]
                     })
                 else:
                     list_.append({
-                        "key": key,
-                        "status": 'CHANGE',
-                        "value1_old": obj1[key],
-                        "value2_new": obj2[key]
+                        'key': key,
+                        'status': 'CHANGE',
+                        'value1_old': obj1[key],
+                        'value2_new': obj2[key]
                     })
         elif key not in obj1:
             list_.append({
-                "key": key,
-                "status": 'ADD',
-                "value": obj2[key]
+                'key': key,
+                'status': 'ADD',
+                'value': obj2[key]
             })
         else:
             list_.append({
-                "key": key,
-                "status": 'DEL',
-                "value": obj1[key]
+                'key': key,
+                'status': 'DEL',
+                'value': obj1[key]
             })
     return list_
 

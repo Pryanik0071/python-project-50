@@ -10,7 +10,7 @@ from gendiff.diff import get_diff_tree, get_first_keys
 PATH = 'tests/fixtures/'
 
 
-@pytest.mark.parametrize("obj1, obj2, expected", [
+@pytest.mark.parametrize('obj1, obj2, expected', [
     (obj.file1, obj.file2, obj.keys12),
     (obj.file1, {}, obj.keys10),
     ({}, obj.file2, obj.keys02),
@@ -19,7 +19,7 @@ def test_keys(obj1, obj2, expected):
     assert get_first_keys(obj1, obj2) == expected
 
 
-@pytest.mark.parametrize("obj1, obj2, expected", [
+@pytest.mark.parametrize('obj1, obj2, expected', [
     (obj.file1, obj.file2, obj.diff12)
 ])
 def test_diff(obj1, obj2, expected):
@@ -27,7 +27,7 @@ def test_diff(obj1, obj2, expected):
     assert get_diff_tree(keys, obj1, obj2) == expected
 
 
-@pytest.mark.parametrize("file_path1, file_path2, expected", [
+@pytest.mark.parametrize('file_path1, file_path2, expected', [
     (PATH + 'file1.json', PATH + 'file2.json', PATH + 'diff_1_2.txt'),
     (PATH + 'file3.json', PATH + 'file4.json', PATH + 'diff_3_4.txt'),
 
@@ -40,7 +40,7 @@ def test_diff_json(file_path1, file_path2, expected):
            open(expected).read().rstrip()
 
 
-@pytest.mark.parametrize("file_path1, file_path2, expected", [
+@pytest.mark.parametrize('file_path1, file_path2, expected', [
     (PATH + 'file1.yaml', PATH + 'file2.yml', PATH + 'diff_1_2.txt'),
     (PATH + 'file1.yml', PATH + 'file2.yaml', PATH + 'diff_1_2.txt'),
 ])
@@ -54,7 +54,7 @@ def test_diff_yaml(file_path1, file_path2, expected):
            open(expected).read().rstrip()
 
 
-@pytest.mark.parametrize("file_path1, file_path2, expected", [
+@pytest.mark.parametrize('file_path1, file_path2, expected', [
     (PATH + 'file1.json', PATH + 'file2.yml', PATH + 'diff_1_2.txt'),
     (PATH + 'file1.json', PATH + 'file2.yaml', PATH + 'diff_1_2.txt'),
 ])
@@ -67,7 +67,7 @@ def test_diff_json_yaml(file_path1, file_path2, expected):
            open(expected).read().rstrip()
 
 
-@pytest.mark.parametrize("file_path1, file_path2, expected", [
+@pytest.mark.parametrize('file_path1, file_path2, expected', [
     (PATH + 'file1.yaml', PATH + 'file2.json', PATH + 'diff_1_2.txt'),
     (PATH + 'file1.yml', PATH + 'file2.json', PATH + 'diff_1_2.txt'),
 ])

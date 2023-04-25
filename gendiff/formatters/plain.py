@@ -16,19 +16,19 @@ def get_value(value):
 
 def build_plain_tree(dict_, keys):
     status = dict_.get('status')
-    key = keys + dict_["key"]
+    key = keys + dict_['key']
     if status != 'CHANGE':
         if status == 'NESTED':
             return '\n'.join(list(map(lambda x: build_plain_tree(
                 x, key + '.'), dict_['value'])))
         if status == 'ADD':
-            value = get_value(dict_["value"])
+            value = get_value(dict_['value'])
             return get_head(key) + f'added with value: {value}'
         if status == 'DEL':
             return get_head(key) + 'removed'
         return ''
-    value_old = get_value(dict_["value1_old"])
-    value_new = get_value(dict_["value2_new"])
+    value_old = get_value(dict_['value1_old'])
+    value_new = get_value(dict_['value2_new'])
     return get_head(key) + f'updated. From {value_old} to {value_new}'
 
 

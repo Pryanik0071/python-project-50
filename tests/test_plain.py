@@ -10,7 +10,7 @@ from gendiff.formatters.plain import (
 PATH = 'tests/fixtures/'
 
 
-@pytest.mark.parametrize("value, expected", [
+@pytest.mark.parametrize('value, expected', [
     ('', "''"),
     (False, 'false'),
     (True, 'true'),
@@ -22,7 +22,7 @@ def test_transform_value(value, expected):
     assert get_value(value) == expected
 
 
-@pytest.mark.parametrize("value, expected", [
+@pytest.mark.parametrize('value, expected', [
     (obj.diff34, PATH + 'plain34.txt')
 ])
 def test_get_stylish_diff(value, expected):

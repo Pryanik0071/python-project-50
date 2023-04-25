@@ -50,12 +50,12 @@ def build_stylish_tree(dict_, deep):
                 lambda x: build_stylish_tree(x, deep + 1), dict_['value'])))
             value = ' {' + f'\n{result}' + f'\n{get_space(deep + 1)}' + '}'
             return key + value
-        value = calculate_value(dict_["value"], deep + 1)
+        value = calculate_value(dict_['value'], deep + 1)
         return key + value
-    k_old = get_head(deep, "", dict_)
-    val_old = calculate_value(dict_["value1_old"], deep + 1)
-    k_new = '\n' + get_head(deep, "ADD", dict_)
-    val_new = calculate_value(dict_["value2_new"], deep + 1)
+    k_old = get_head(deep, '', dict_)
+    val_old = calculate_value(dict_['value1_old'], deep + 1)
+    k_new = '\n' + get_head(deep, 'ADD', dict_)
+    val_new = calculate_value(dict_['value2_new'], deep + 1)
     return k_old + val_old + k_new + val_new
 
 
