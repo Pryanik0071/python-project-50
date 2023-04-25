@@ -30,7 +30,7 @@ def test_get_space(deep, expected):
 
 
 @pytest.mark.parametrize('value, expected', [
-    ('', ""),
+    ('', ' '),
     (False, ' false'),
     (True, ' true'),
     (None, ' null'),
