@@ -6,8 +6,8 @@ def get_status(status_):
     return '  - '
 
 
-def get_space(deep):
-    return " " * 4 * deep
+def get_space(deep, indent=4):
+    return " " * indent * deep
 
 
 def transform_value(value_):
