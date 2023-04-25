@@ -5,20 +5,20 @@ import yaml
 
 
 def read_json(file_path):
-    file_ = dict()
+    file_data = dict()
     try:
-        file_ = json.load(open(file_path))
+        file_data = json.load(open(file_path))
     except json.decoder.JSONDecodeError:
         print(f'File {file_path} is empty!')
-    return file_
+    return file_data
 
 
 def read_yaml(file_path):
     with open(file_path) as f:
-        file_ = yaml.load(f, Loader=yaml.loader.SafeLoader)
-    if file_ is None:
+        file_data = yaml.load(f, Loader=yaml.loader.SafeLoader)
+    if file_data is None:
         return dict()
-    return file_
+    return file_data
 
 
 def read_file(file_path):
