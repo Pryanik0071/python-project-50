@@ -16,9 +16,9 @@ def get_value(value):
     return f'\'{value}\''
 
 
-def build_plain_tree(dict_, keys):
+def build_plain_tree(dict_, nested_key):
     status = dict_.get('status')
-    key = keys + dict_['key']
+    key = nested_key + dict_['key']
     if status != 'CHANGED':
         if status == 'NESTED':
             return '\n'.join(list(map(lambda x: build_plain_tree(
