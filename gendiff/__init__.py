@@ -8,7 +8,7 @@ __all__ = (
 )
 
 
-def generate_diff(file_path1, file_path2, formatter):
+def generate_diff(file_path1, file_path2, formatter='stylish'):
     file1 = read_file(file_path1)
     file2 = read_file(file_path2)
     if file1 is None or file2 is None:
