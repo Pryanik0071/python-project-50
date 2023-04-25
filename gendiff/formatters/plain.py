@@ -29,8 +29,8 @@ def build_plain_tree(dict_, keys):
         if status == 'DELETED':
             return get_head(key) + 'removed'
         return ''
-    value_old = get_value(dict_['value1_old'])
-    value_new = get_value(dict_['value2_new'])
+    value_old = get_value(dict_['value_old'])
+    value_new = get_value(dict_['value_new'])
     return get_head(key) + f'updated. From {value_old} to {value_new}'
 
 

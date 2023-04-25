@@ -20,7 +20,7 @@ diff12 = [
     {'key': 'host', 'status': 'UNCHANGED', 'value': 'hexlet.io'},
     {'key': 'proxy', 'status': 'DELETED', 'value': '123.234.53.22'},
     {'key': 'timeout', 'status': 'CHANGED',
-     'value1_old': 50, 'value2_new': 20},
+     'value_old': 50, 'value_new': 20},
     {'key': 'verbose', 'status': 'ADDED', 'value': True}
 ]
 
@@ -30,13 +30,13 @@ diff34 = [
         {'key': 'setting1', 'status': 'UNCHANGED', 'value': 'Value 1'},
         {'key': 'setting2', 'status': 'DELETED', 'value': 200},
         {'key': 'setting3', 'status': 'CHANGED',
-         'value1_old': True, 'value2_new': None},
+         'value_old': True, 'value_new': None},
         {'key': 'setting4', 'status': 'ADDED', 'value': 'blah blah'},
         {'key': 'setting5', 'status': 'ADDED', 'value': {'key5': 'value5'}},
         {'key': 'setting6', 'status': 'NESTED', 'value': [
             {'key': 'doge', 'status': 'NESTED', 'value': [
                 {'key': 'wow', 'status': 'CHANGED',
-                 'value1_old': '', 'value2_new': 'so much'}
+                 'value_old': '', 'value_new': 'so much'}
             ]},
             {'key': 'key', 'status': 'UNCHANGED', 'value': 'value'},
             {'key': 'ops', 'status': 'ADDED', 'value': 'vops'}
@@ -44,10 +44,10 @@ diff34 = [
     ]},
     {'key': 'group1', 'status': 'NESTED', 'value': [
         {'key': 'baz', 'status': 'CHANGED',
-         'value1_old': 'bas', 'value2_new': 'bars'},
+         'value_old': 'bas', 'value_new': 'bars'},
         {'key': 'foo', 'status': 'UNCHANGED', 'value': 'bar'},
         {'key': 'nest', 'status': 'CHANGED',
-         'value1_old': {'key': 'value'}, 'value2_new': 'str'}
+         'value_old': {'key': 'value'}, 'value_new': 'str'}
     ]},
     {'key': 'group2', 'status': 'DELETED',
      'value': {'abc': 12345, 'deep': {'id': 45}}},

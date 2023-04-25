@@ -24,8 +24,8 @@ def get_diff_tree(keys, obj1, obj2):
                     list_.append({
                         'key': key,
                         'status': 'CHANGED',
-                        'value1_old': obj1[key],
-                        'value2_new': obj2[key]
+                        'value_old': obj1[key],
+                        'value_new': obj2[key]
                     })
         elif key not in obj1:
             list_.append({

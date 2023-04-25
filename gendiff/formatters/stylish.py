@@ -51,9 +51,9 @@ def build_stylish_tree(dict_, deep):
         value = calculate_value(dict_['value'], deep + 1)
         return key + value
     k_old = get_head(deep, '', dict_)
-    val_old = calculate_value(dict_['value1_old'], deep + 1)
+    val_old = calculate_value(dict_['value_old'], deep + 1)
     k_new = '\n' + get_head(deep, 'ADDED', dict_)
-    val_new = calculate_value(dict_['value2_new'], deep + 1)
+    val_new = calculate_value(dict_['value_new'], deep + 1)
     return k_old + val_old + k_new + val_new
 
 
