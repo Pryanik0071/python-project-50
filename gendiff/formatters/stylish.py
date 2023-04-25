@@ -1,5 +1,5 @@
 def get_status(status_):
-    if status_ == 'STAY':
+    if status_ in {'STAY', 'NESTED'}:
         return '    '
     if status_ == 'ADD':
         return '  + '
@@ -42,9 +42,10 @@ def calculate_value(val, deep):
 
 
 def build_stylish_tree(dict_, deep):
-    if dict_.get('status') != 'CHANGE':
-        key = get_head(deep, dict_["status"], dict_)
-        if isinstance(dict_['value'], list):
+    status = dict_.get('status')
+    if status != 'CHANGE':
+        key = get_head(deep, status, dict_)
+        if status == 'NESTED':
             result = '\n'.join(list(map(
                 lambda x: build_stylish_tree(x, deep + 1), dict_['value'])))
             value = ' {' + f'\n{result}' + f'\n{get_space(deep + 1)}' + '}'

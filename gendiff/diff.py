@@ -10,7 +10,7 @@ def get_diff_tree(keys, obj1, obj2):
                 result = get_diff_tree(new_keys, obj1[key], obj2[key])
                 list_.append({
                     "key": key,
-                    "status": 'STAY',
+                    "status": 'NESTED',
                     "value": result
                 })
             else:

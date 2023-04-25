@@ -1,7 +1,7 @@
 [
     {
         "key": "common",
-        "status": "STAY",
+        "status": "NESTED",
         "value": [
             {
                 "key": "follow",
@@ -38,11 +38,11 @@
             },
             {
                 "key": "setting6",
-                "status": "STAY",
+                "status": "NESTED",
                 "value": [
                     {
                         "key": "doge",
-                        "status": "STAY",
+                        "status": "NESTED",
                         "value": [
                             {
                                 "key": "wow",
@@ -68,7 +68,7 @@
     },
     {
         "key": "group1",
-        "status": "STAY",
+        "status": "NESTED",
         "value": [
             {
                 "key": "baz",
