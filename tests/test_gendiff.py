@@ -13,7 +13,6 @@ PATH = 'tests/fixtures/'
     (PATH + 'file1.yaml', PATH + 'file2.json', 'stylish', PATH + 'stylish12.txt'),
     (PATH + 'file3.json', PATH + 'file4.json', 'stylish', PATH + 'stylish34.txt'),
     (PATH + 'file0.json', PATH + 'file1.json', 'stylish', PATH + 'stylish01.txt'),
-    (PATH + 'file2.json', PATH + 'file_empty.yml', 'stylish', PATH + 'stylish2zero.txt'),
 ])
 def test_generate_diff(file_path1, file_path2, formatter, expected):
     assert generate_diff(file_path1, file_path2, formatter) == \

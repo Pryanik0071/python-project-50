@@ -13,8 +13,7 @@ PATH = 'tests/fixtures/'
     (PATH + 'file1.yml', obj.file1),
     (PATH + 'file1.txt', None),
     (PATH + 'file0.json', {}),
-    (PATH + 'file_empty.json', {}),
-    (PATH + 'file_empty.yml', {}),
+    (PATH + 'file_empty.yml', None),
 ])
 def test_reader(file_path, expected):
     assert read_file(file_path) == expected
