@@ -1,51 +1,43 @@
-def get_diff_tree(keys, obj1, obj2):
-    list_ = []
+def get_diff_tree(obj1, obj2):
+    keys = []
+    tree = []
+    if isinstance(obj1, dict):
+        keys.extend(list(obj1.keys()))
+    if isinstance(obj2, dict):
+        keys.extend(list(obj2.keys()))
+    keys = sorted(set(keys))
     for key in keys:
-        if key in obj1 and key in obj2:
-            if all((isinstance(obj1.get(key), dict),
-                    isinstance(obj2.get(key), dict))):
-                new_keys = sorted(
-                    set(list(obj1[key].keys()) + list(obj2[key].keys()))
-                )
-                result = get_diff_tree(new_keys, obj1[key], obj2[key])
-                list_.append({
-                    'key': key,
-                    'status': 'NESTED',
-                    'value': result
-                })
-            else:
-                if obj1.get(key) == obj2.get(key):
-                    list_.append({
-                        'key': key,
-                        'status': 'UNCHANGED',
-                        'value': obj1[key]
-                    })
-                else:
-                    list_.append({
-                        'key': key,
-                        'status': 'CHANGED',
-                        'value_old': obj1[key],
-                        'value_new': obj2[key]
-                    })
+        if all((isinstance(obj1.get(key), dict),
+                isinstance(obj2.get(key), dict))):
+            result = get_diff_tree(obj1[key], obj2[key])
+            tree.append({
+                'key': key,
+                'status': 'NESTED',
+                'value': result
+            })
         elif key not in obj1:
-            list_.append({
+            tree.append({
                 'key': key,
                 'status': 'ADDED',
                 'value': obj2[key]
             })
-        else:
-            list_.append({
+        elif key not in obj2:
+            tree.append({
                 'key': key,
                 'status': 'DELETED',
                 'value': obj1[key]
             })
-    return list_
-
-
-def get_first_keys(file1, file2):
-    list_ = []
-    if isinstance(file1, dict):
-        list_.extend(list(file1.keys()))
-    if isinstance(file2, dict):
-        list_.extend(list(file2.keys()))
-    return sorted(set(list_))
+        elif obj1.get(key) == obj2.get(key):
+            tree.append({
+                'key': key,
+                'status': 'UNCHANGED',
+                'value': obj1[key]
+            })
+        else:
+            tree.append({
+                'key': key,
+                'status': 'CHANGED',
+                'value_old': obj1[key],
+                'value_new': obj2[key]
+            })
+    return tree

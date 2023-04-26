@@ -1,4 +1,4 @@
-from .diff import get_diff_tree, get_first_keys
+from .diff import get_diff_tree
 from .reader import read_file
 from gendiff.formatters.formatter import get_formatter
 
@@ -13,7 +13,6 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
     file2 = read_file(file_path2)
     if file1 is None or file2 is None:
         return
-    keys = get_first_keys(file1, file2)
     if (format_func := get_formatter(formatter)) is None:
         return
-    return format_func(get_diff_tree(keys, file1, file2))
+    return format_func(get_diff_tree(file1, file2))
