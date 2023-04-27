@@ -15,3 +15,11 @@
     make install
 
 ## Examples:
+#### `.yaml & .json - default formatter=stylish`
+[![asciicast](https://asciinema.org/a/AVM8UdCdwFMd05vacoM8yKMrk.svg)](https://asciinema.org/a/AVM8UdCdwFMd05vacoM8yKMrk)
+
+#### `.json & .json - formatter=stylish`
+[![asciicast](https://asciinema.org/a/MCCAdMOeNdEKcBwS3Rh2QVX5t.svg)](https://asciinema.org/a/MCCAdMOeNdEKcBwS3Rh2QVX5t)
+
+#### `.json & .json - formatter=plain`
+[![asciicast](https://asciinema.org/a/sjAdrobWN4cyiWe1f1qYDVofj.svg)](https://asciinema.org/a/sjAdrobWN4cyiWe1f1qYDVofj)
