@@ -5,6 +5,12 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ed7dd915141f260e9707/maintainability)](https://codeclimate.com/github/Pryanik0071/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ed7dd915141f260e9707/test_coverage)](https://codeclimate.com/github/Pryanik0071/python-project-50/test_coverage)
 
+Вычислитель отличий – программа, определяющая разницу между двумя файлами.
+
+Возможности утилиты:
++ Поддержка формата входных файлов: yaml, json 
++ Возможность задать формат вывода: plain, stylish и json
+
 ## Tools:
 + **poetry**
 + **python = "^3.10"**
