@@ -19,19 +19,19 @@ def get_value(value):
 def build_plain_tree(dict_, nested_key):
     status = dict_.get('status')
     key = nested_key + dict_['key']
-    if status != 'CHANGED':
-        if status == 'NESTED':
-            return '\n'.join(list(map(lambda x: build_plain_tree(
-                x, key + '.'), dict_['value'])))
-        if status == 'ADDED':
-            value = get_value(dict_['value'])
-            return get_head(key) + f'added with value: {value}'
-        if status == 'DELETED':
-            return get_head(key) + 'removed'
-        return ''
-    value_old = get_value(dict_['value_old'])
-    value_new = get_value(dict_['value_new'])
-    return get_head(key) + f'updated. From {value_old} to {value_new}'
+    if status == 'CHANGED':
+        value_old = get_value(dict_['value_old'])
+        value_new = get_value(dict_['value_new'])
+        return get_head(key) + f'updated. From {value_old} to {value_new}'
+    if status == 'NESTED':
+        return '\n'.join(list(map(lambda x: build_plain_tree(
+            x, key + '.'), dict_['value'])))
+    if status == 'ADDED':
+        value = get_value(dict_['value'])
+        return get_head(key) + f'added with value: {value}'
+    if status == 'DELETED':
+        return get_head(key) + 'removed'
+    return ''
 
 
 def get_plain_diff(node):
