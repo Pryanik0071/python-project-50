@@ -9,8 +9,8 @@ def get_status(status_):
     return '  - '
 
 
-def get_space(deep):
-    return ' ' * (INDENT * deep - 4)
+def get_space(depth):
+    return ' ' * (INDENT * depth - 4)
 
 
 def transform_value(value_):
@@ -23,40 +23,40 @@ def transform_value(value_):
     return str(value_)
 
 
-def get_head(deep, status, dict_):
-    return f'{get_space(deep)}{get_status(status)}{dict_["key"]}: '
+def get_head(depth, status, dict_):
+    return f'{get_space(depth)}{get_status(status)}{dict_["key"]}: '
 
 
-def calculate_value(val, deep):
+def calculate_value(val, depth):
     if isinstance(val, dict):
         if len(val) == 1:
             key, value = list(val.items())[0]
-            return f'{"{"}\n{get_space(deep + 1)}{key}: ' \
-                   f'{calculate_value(value, deep + 1)}' \
-                   f'\n{get_space(deep)}{"}"}'
+            return f'{"{"}\n{get_space(depth + 1)}{key}: ' \
+                   f'{calculate_value(value, depth + 1)}' \
+                   f'\n{get_space(depth)}{"}"}'
         list_ = []
         for key, values in val.items():
-            list_.append(f'\n{get_space(deep + 1)}{key}: '
-                         f'{calculate_value(values, deep + 1)}')
-        return f'{"{"}{"".join(list_)}\n{get_space(deep)}{"}"}'
+            list_.append(f'\n{get_space(depth + 1)}{key}: '
+                         f'{calculate_value(values, depth + 1)}')
+        return f'{"{"}{"".join(list_)}\n{get_space(depth)}{"}"}'
     return transform_value(val)
 
 
-def build_stylish_tree(dict_, deep):
+def build_stylish_tree(dict_, depth):
     status = dict_.get('status')
     if status != 'CHANGED':
-        key = get_head(deep, status, dict_)
+        key = get_head(depth, status, dict_)
         if status == 'NESTED':
             result = '\n'.join(list(map(
-                lambda x: build_stylish_tree(x, deep + 1), dict_['value'])))
-            value = f'{"{"}\n{result}\n{get_space(deep + 1)}{"}"}'
+                lambda x: build_stylish_tree(x, depth + 1), dict_['value'])))
+            value = f'{"{"}\n{result}\n{get_space(depth + 1)}{"}"}'
             return key + value
-        value = calculate_value(dict_['value'], deep + 1)
+        value = calculate_value(dict_['value'], depth + 1)
         return key + value
-    k_old = get_head(deep, '', dict_)
-    val_old = calculate_value(dict_['value_old'], deep + 1)
-    k_new = '\n' + get_head(deep, 'ADDED', dict_)
-    val_new = calculate_value(dict_['value_new'], deep + 1)
+    k_old = get_head(depth, '', dict_)
+    val_old = calculate_value(dict_['value_old'], depth + 1)
+    k_new = '\n' + get_head(depth, 'ADDED', dict_)
+    val_new = calculate_value(dict_['value_new'], depth + 1)
     return k_old + val_old + k_new + val_new
 
 
