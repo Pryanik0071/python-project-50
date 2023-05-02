@@ -1,5 +1,5 @@
-from .stylish import get_stylish_diff
-from .plain import get_plain_diff
+from .stylish_formatter import get_stylish_diff
+from .plain_formatter import get_plain_diff
 from .json_formatter import get_json
 
 
