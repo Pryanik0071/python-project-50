@@ -47,21 +47,22 @@ def build_stylish_tree(dict_, depth):
     if status == 'CHANGED':
         k_old = get_head(depth, '', dict_)
         val_old = calculate_value(dict_['value_old'], depth + 1)
-        k_new = '\n' + get_head(depth, 'ADDED', dict_)
+        k_new = f'\n{get_head(depth, "ADDED", dict_)}'
         val_new = calculate_value(dict_['value_new'], depth + 1)
-        return k_old + val_old + k_new + val_new
+        return f'{k_old}{val_old}{k_new}{val_new}'
     key = get_head(depth, status, dict_)
     if status == 'NESTED':
         result = '\n'.join(list(map(
             lambda x: build_stylish_tree(x, depth + 1), dict_['value'])))
         value = f'{"{"}\n{result}\n{get_space(depth + 1)}{"}"}'
-        return key + value
+        return f'{key}{value}'
     value = calculate_value(dict_['value'], depth + 1)
-    return key + value  # ADDED DELETED UNCHANGED
+    return f'{key}{value}'  # ADDED DELETED UNCHANGED
 
 
 def get_stylish_diff(node):
     list_ = []
     for children in node:
         list_.append(build_stylish_tree(children, 1))
-    return '{\n' + '\n'.join(list_) + '\n}'
+    out = '\n'.join(list_)
+    return f'{"{"}\n{out}\n{"}"}'
