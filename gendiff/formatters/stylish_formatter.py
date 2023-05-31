@@ -3,14 +3,14 @@ INDENT = 4
 
 def get_status(status_):
     if status_ in {'UNCHANGED', 'NESTED'}:
-        return '    '
+        return ' ' * INDENT
     if status_ == 'ADDED':
-        return '  + '
-    return '  - '
+        return ' ' * (INDENT - 2) + '+ '
+    return ' ' * (INDENT - 2) + '- '
 
 
 def get_space(depth):
-    return ' ' * (INDENT * depth - 4)
+    return ' ' * INDENT * depth
 
 
 def transform_value(value_):
@@ -63,6 +63,6 @@ def build_stylish_tree(dict_, depth):
 def get_stylish_diff(node):
     list_ = []
     for children in node:
-        list_.append(build_stylish_tree(children, 1))
+        list_.append(build_stylish_tree(children, 0))
     out = '\n'.join(list_)
     return f'{"{"}\n{out}\n{"}"}'
