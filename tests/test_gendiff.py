@@ -12,6 +12,7 @@ PATH = 'tests/fixtures/'
     (f'{PATH}file3.json', f'{PATH}file4.json', 'stylish', f'{PATH}stylish34.txt'),
     (f'{PATH}file0.json', f'{PATH}file1.json', 'stylish', f'{PATH}stylish01.txt'),
     (f'{PATH}file3.json', f'{PATH}file4.json', 'plain', f'{PATH}plain34.txt'),
+    (f'{PATH}file3.json', f'{PATH}file4.json', 'json', f'{PATH}json34.txt'),
 ])
 def test_generate_diff(file_path1, file_path2, formatter, expected):
     with open(expected) as f:
