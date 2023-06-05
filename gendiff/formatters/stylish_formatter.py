@@ -42,21 +42,21 @@ def calculate_value(val, depth):
     return transform_value(val)
 
 
-def build_stylish_tree(dict_, depth):
-    status = dict_.get('status')
+def build_stylish_tree(node, depth):
+    status = node.get('status')
     if status == 'CHANGED':
-        key_old = get_head(depth, '', dict_)
-        value_old = calculate_value(dict_['value_old'], depth + 1)
-        key_new = f'\n{get_head(depth, "ADDED", dict_)}'
-        value_new = calculate_value(dict_['value_new'], depth + 1)
+        key_old = get_head(depth, '', node)
+        value_old = calculate_value(node['value_old'], depth + 1)
+        key_new = f'\n{get_head(depth, "ADDED", node)}'
+        value_new = calculate_value(node['value_new'], depth + 1)
         return f'{key_old}{value_old}{key_new}{value_new}'
-    key = get_head(depth, status, dict_)
+    key = get_head(depth, status, node)
     if status == 'NESTED':
         result = '\n'.join(list(map(
-            lambda x: build_stylish_tree(x, depth + 1), dict_['value'])))
+            lambda x: build_stylish_tree(x, depth + 1), node['value'])))
         value = f'{"{"}\n{result}\n{get_space(depth + 1)}{"}"}'
         return f'{key}{value}'
-    value = calculate_value(dict_['value'], depth + 1)
+    value = calculate_value(node['value'], depth + 1)
     return f'{key}{value}'  # ADDED DELETED UNCHANGED
 
 
