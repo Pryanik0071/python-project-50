@@ -61,8 +61,8 @@ def build_stylish_tree(dict_, depth):
 
 
 def get_stylish_diff(diff):
-    list_ = []
+    result = []
     for children in diff:
-        list_.append(build_stylish_tree(children, 0))
-    out = '\n'.join(list_)
+        result.append(build_stylish_tree(children, 0))
+    out = '\n'.join(result)
     return f'{"{"}\n{out}\n{"}"}'

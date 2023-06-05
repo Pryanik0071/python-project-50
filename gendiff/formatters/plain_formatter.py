@@ -35,7 +35,7 @@ def build_plain_tree(dict_, nested_key):
 
 
 def get_plain_diff(diff):
-    list_ = []
+    result = []
     for children in diff:
-        list_.append(build_plain_tree(children, ''))
-    return '\n'.join(list_).replace('\n\n', '\n')
+        result.append(build_plain_tree(children, ''))
+    return '\n'.join(result).replace('\n\n', '\n')
