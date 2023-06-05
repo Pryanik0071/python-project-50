@@ -1,24 +1,31 @@
 import json
-import pathlib
+import os
 
 import yaml
 
 
-def read_json(file_path):
+def read_content(file_path):
     with open(file_path) as f:
-        file_data = json.load(f)
-    return file_data
+        content = f.read()
+    return content
 
 
-def read_yaml(file_path):
-    with open(file_path) as f:
-        file_data = yaml.load(f, Loader=yaml.loader.SafeLoader)
-    return file_data
+def read_json(content):
+    return json.loads(content)
 
 
-def read_file(file_path):
-    if pathlib.Path(file_path).suffix == '.json':
-        return read_json(file_path)
-    if pathlib.Path(file_path).suffix in ('.yaml', '.yml'):
-        return read_yaml(file_path)
+def read_yaml(content):
+    return yaml.load(content, Loader=yaml.loader.SafeLoader)
+
+
+def parse_content(file_path, content):
+    _, extension = os.path.splitext(file_path)
+    if extension == '.json':
+        return read_json(content)
+    if extension in ('.yaml', '.yml'):
+        return read_yaml(content)
     print('File extension does\'t support, use .json or .yaml/.yml')
+
+
+def parse_file(file_path):
+    return parse_content(file_path, read_content(file_path))

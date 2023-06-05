@@ -1,5 +1,5 @@
 from .diff import get_diff_tree
-from .reader import read_file
+from .reader import parse_file
 from gendiff.formatters.formatter import get_formatter
 
 
@@ -9,8 +9,8 @@ __all__ = (
 
 
 def generate_diff(file_path1, file_path2, formatter='stylish'):
-    file1 = read_file(file_path1)
-    file2 = read_file(file_path2)
+    file1 = parse_file(file_path1)
+    file2 = parse_file(file_path2)
     if file1 is None or file2 is None:
         return
     if (format_func := get_formatter(formatter)) is None:
