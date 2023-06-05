@@ -60,9 +60,9 @@ def build_stylish_tree(dict_, depth):
     return f'{key}{value}'  # ADDED DELETED UNCHANGED
 
 
-def get_stylish_diff(node):
+def get_stylish_diff(diff):
     list_ = []
-    for children in node:
+    for children in diff:
         list_.append(build_stylish_tree(children, 0))
     out = '\n'.join(list_)
     return f'{"{"}\n{out}\n{"}"}'
