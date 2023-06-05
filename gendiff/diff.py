@@ -1,11 +1,6 @@
 def get_diff_tree(obj1, obj2):
-    keys = []
     tree = []
-    if isinstance(obj1, dict):
-        keys.extend(list(obj1.keys()))
-    if isinstance(obj2, dict):
-        keys.extend(list(obj2.keys()))
-    keys = sorted(set(keys))
+    keys = sorted(obj1.keys() | obj2.keys())
     for key in keys:
         if all((isinstance(obj1.get(key), dict),
                 isinstance(obj2.get(key), dict))):
